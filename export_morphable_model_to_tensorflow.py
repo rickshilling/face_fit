@@ -30,6 +30,7 @@ v = tf.matmul(shape_model_pca_basis,alpha) + v_bar
 alpha_hat = tf.matrix_solve_ls(shape_model_pca_basis,v-v_bar)
 loss = tf.norm(alpha-alpha_hat)
 
+# Based on notation in https://en.wikipedia.org/wiki/3D_projection
 ds = tf.reshape(v,[3,num_points])
 ds_1 = tf.concat([ds, tf.ones([1,num_points])], 0)
 focal_length = 2 # TODO: Make tf.Variable
