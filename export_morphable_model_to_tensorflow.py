@@ -30,7 +30,7 @@ with tf.variable_scope('morphable_instance') as scope:
     alpha = tf.Variable(tf.random_normal([pca_shape_matrix_size[1], 1], stddev=1e-2), name='PCA_coefficients')
     v = tf.matmul(shape_model_pca_basis,alpha) + v_bar
 
-with tf.variable_scope('estimation') as scope:
+with tf.variable_scope('PCA_estimation') as scope:
     alpha_hat = tf.matrix_solve_ls(shape_model_pca_basis,v-v_bar)
     loss = tf.norm(alpha-alpha_hat)
 
